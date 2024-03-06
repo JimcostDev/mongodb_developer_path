@@ -1,0 +1,11 @@
+use('sample_mflix');
+db.movies.countDocuments(); // si admite filtros, exacto, mas lento
+
+use('sample_mflix');
+db.movies.estimatedDocumentCount(); // no admite filtros, inexacto, rapido
+
+use('sample_mflix');
+db.movies.countDocuments({year: 2000});
+
+use('sample_mflix');
+db.movies.count({year: 2000}); // obsoleto desde mongo 4.0

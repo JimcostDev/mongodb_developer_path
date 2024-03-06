@@ -1,0 +1,2 @@
+use("jimcostdev_api")
+db.contact.find({ email: "jimcostdev@gmail.com" })

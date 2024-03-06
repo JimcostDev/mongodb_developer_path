@@ -1,0 +1,18 @@
+use('football');
+db.scorers.aggregate([
+    { $match: {
+      goles: { $gt: 19 },
+      torneo: "La Liga"
+    }}
+  ]);
+  
+/**El operador $match en MongoDB se usa para filtrar documentos 
+ * en una colección based on a set of criteria. Es una 
+ * de las etapas más importantes del framework de agregación de MongoDB. */
+
+use('sample_airbnb');
+db.listingsAndReviews.aggregate([
+    { $match: {amenities: "Wifi"}}, // find
+    { $project: { address: 1 } }, // select
+    { $group: { _id: '$address.country', quantity: {$sum: 1} } }// group
+  ]);

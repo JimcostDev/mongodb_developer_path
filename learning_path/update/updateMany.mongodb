@@ -1,0 +1,22 @@
+use("sample_mflix");
+db.users.updateMany(
+    {  },
+    {
+        $set: 
+        {
+            avatar: "https://www.gravatar.com/av"
+        }
+    }
+);
+
+
+use('football');
+db.scorers.updateMany(
+    {}, 
+    {
+        $set:
+        {
+            asistensias: 10, 
+            partidos_jugados: 34
+        }
+    });

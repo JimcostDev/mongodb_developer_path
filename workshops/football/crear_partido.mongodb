@@ -1,0 +1,9 @@
+use("football");
+db.partidos.insertOne({
+    "fecha": new Date(),
+    "local": "Chelsea",
+    "goles_local": 1,
+    "visitante": "Manchester United",
+    "goles_visitante": 1
+  });
+  

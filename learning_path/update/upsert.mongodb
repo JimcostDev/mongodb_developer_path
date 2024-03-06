@@ -1,0 +1,12 @@
+use('football');
+// si existen los datos los actualiza, sino crea un nuevo registro
+db.teams.updateOne({
+    name: "Atletico Madrid",
+  }, {
+    $set: {
+      name: "Atletico Madrid",
+      league: "La Liga",
+      country: "Spain"
+    }
+  },{upsert:true});
+

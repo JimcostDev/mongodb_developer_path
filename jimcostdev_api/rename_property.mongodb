@@ -1,0 +1,15 @@
+use("jimcostdev_api")
+var coleccion = 'social_networks';
+
+// Utiliza el método update con la opción multi:true para cambiar el nombre de la propiedad
+db.getCollection(coleccion).update(
+   {}, // Criterio de búsqueda vacío para que afecte a todos los documentos
+   {
+      $rename: {
+        "info_network.username": "info_network.handle"
+      }
+   },
+   {
+      multi: true
+   }
+);

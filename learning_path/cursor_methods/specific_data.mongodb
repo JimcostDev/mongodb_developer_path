@@ -1,0 +1,8 @@
+use('football');
+// show only the team for teams from Spain
+db.teams.find({country: 'Spain'}, {name: 1, _id: 0}); // select name from teams where country = 'Spain'
+
+
+use('football');
+// show only the team for teams from England or Italy and sort by country in descending order
+db.teams.find({country: {$in:['England', 'Italy'] }}, {name: 1, _id: 0}).sort({country: -1}) // select name from teams where country in ('England', 'Italy') order by country desc

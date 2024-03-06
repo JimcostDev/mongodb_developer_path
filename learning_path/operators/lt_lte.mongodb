@@ -1,0 +1,8 @@
+// *********** usando $lt(<) y $lte(<=) ***********
+use("sample_restaurants")
+
+// productos con precio menor a 10
+db.products.find({"price": {$lt: 10}})
+
+// productos con precio menor o igual a 10
+db.products.find({"price": {$lte: 10}})

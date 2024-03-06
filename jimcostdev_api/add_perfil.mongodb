@@ -1,0 +1,10 @@
+
+use("jimcostdev_api")
+db.perfil.insertOne({
+    _id: 1,
+    name: "Ronaldo Jiménez Acosta",
+    rol: "Full Stack Developer",
+    description: "Soy un apasionado de la tecnología con más de 2 años de experiencia en desarrollo de software y aplicaciones web. Poseo habilidades sólidas en desarrollo web utilizando Python y Javascript, así como en la gestión de bases de datos, incluyendo Microsoft SQL Server y MongoDB. Destaco por mi capacidad para enseñar y servir como mentor, lo que me ha llevado a desempeñarme como docente y tutor de programación. Además, estoy certificado en Azure Fundamentals por Microsoft.",
+    langs: ['Español', 'Ingles'],
+    skills: ['python', 'javascript', 'mongodb', 'sql server', 'git']
+})

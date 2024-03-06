@@ -1,0 +1,35 @@
+// los 3 mejores artilleros de la temporada
+use('football');
+db.scorers.aggregate([
+  {
+    $sort: { goles: -1 }
+  },
+  {
+    $limit: 3
+  }
+]);
+
+// out me permite guardar el resultado de la consulta en una colección nueva
+// La liga mas goleadora, los mejores killers
+use('football');
+db.scorers.aggregate([
+  { 
+    $match: { 
+      goles: { $gt: 20 }
+    } 
+  },
+  {
+    $group: {
+      _id: "$torneo",
+      total_goles: { $sum: "$goles" },
+      total_jugadores: { $sum: 1 }
+    }
+  },
+  {
+    $out: "the_best_scorers"
+  }
+]);
+
+// Resultado
+use('football');
+db.the_best_scorers.find().sort({total_goles: -1})

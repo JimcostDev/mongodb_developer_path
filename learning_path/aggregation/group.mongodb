@@ -1,0 +1,39 @@
+use('football')
+// 1. Total de goles por torneo (entre los goleadores)
+db.scorers.aggregate([
+    { $group: {
+      _id: "$torneo",
+      totalGoles: { $sum: "$goles" }
+    }
+    }, 
+    { $sort: { totalGoles: -1 } }
+  ])
+
+// 2. Total equipos por liga
+use('football')
+db.teams.aggregate([
+  { $group: {
+    _id: "$league",
+    numEquipos: { $count: {} }
+  }}
+])
+
+// 3. Total de goles por torneo (entre los goleadores) con más de 19 goles
+use('football');
+db.scorers.aggregate([
+  { 
+    $match: { 
+      goles: { $gt: 20 }
+    } 
+  },
+  {
+    $group: {
+      _id: "$torneo",
+      total_goles: { $sum: "$goles" },
+      total_jugadores: { $sum: 1 }
+    }
+  }
+]);
+
+
+  

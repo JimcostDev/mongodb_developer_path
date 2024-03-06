@@ -1,0 +1,9 @@
+use("sample_restaurants")
+
+db.products.insertMany([
+  { _id: 1, name: "Pizza", details: "lorem ipsum", tags: ["italian food", "no vegan"], price: 12},
+  { _id: 2, name: "Hamburguesa", details: "lorem ipsum", tags: ["grande"], price: 9 },
+  { _id: 3, name: "Pasta", details: "lorem ipsum", tags: ["free gluten", "integral"], price: 8 },
+  { _id: 4, name: "tacos", details: "lorem ipsum", tags: ["picante", "delicioso"], price: 7.5 },
+])
+

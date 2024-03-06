@@ -1,0 +1,23 @@
+// incrementar con base al valor actual (si es numerico)
+use("sample_mflix");
+db.movies.updateOne(
+    { "year": 1903 },
+    {
+        $inc: 
+        {
+            runtime: 5
+        }
+    }
+);
+
+
+use("football");
+db.scorers.updateOne(
+    { "jugador": 'Robert Lewandowski' },
+    {
+        $inc: 
+        {
+            goles: 4
+        }
+    }
+);

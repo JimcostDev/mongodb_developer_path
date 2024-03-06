@@ -1,0 +1,22 @@
+// implicitamente, o MongoDB trata arrays de documentos como subdocumentos
+use('sample_training');
+db.companies.countDocuments({
+    'relationships.person.first_name': 'Mark'
+},{
+    name: 1,
+    relationships: 1
+});
+
+
+// usando $elemMatch
+use('sample_training');
+db.companies.countDocuments({
+    relationships: {
+        $elemMatch:{
+            'person.first_name' : 'Mark'
+        }
+    }
+    }, {
+    name: 1,
+    relationships: 1
+});

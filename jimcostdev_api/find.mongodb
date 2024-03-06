@@ -1,0 +1,11 @@
+use("jimcostdev_api");
+
+var collection = 'perfil';
+var value = "jimcostdev";
+db.getCollection(collection).find();
+//db.getCollection(collection).find().count();
+//db.getCollection(collection).findOne({"username": value});
+
+
+
+

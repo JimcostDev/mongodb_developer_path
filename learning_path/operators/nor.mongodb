@@ -1,0 +1,7 @@
+// $nor se usa para seleccionar documentos donde ninguno de los valores especificados en una matriz de expresiones es verdadero.
+// busca los equipos que no son de Italia ni de España
+use("football");
+db.teams.find(
+    { $nor: [{ country: "Italy" }, { country: "Spain" }] }, 
+    { _id: 0, name: 1 }
+);

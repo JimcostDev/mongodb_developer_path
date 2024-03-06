@@ -1,0 +1,24 @@
+// out me permite guardar el resultado de la consulta en una colección nueva
+// Total de goles por torneo (entre los goleadores) con más de 19 goles
+use('football');
+db.scorers.aggregate([
+  { 
+    $match: { 
+      goles: { $gt: 19 }
+    } 
+  },
+  {
+    $group: {
+      _id: "$torneo",
+      total_goles: { $sum: "$goles" },
+      total_jugadores: { $sum: 1 }
+    }
+  },
+  {
+    $out: "torneos_goleadores"
+  }
+]);
+
+// Resultado
+use('football');
+db.torneos_goleadores.find()

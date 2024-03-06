@@ -1,0 +1,18 @@
+use('sample_mflix');
+
+// Buscar todas las películas que contengan la palabra "Naruto" en el título, sin importar mayúsculas o minúsculas
+db.movies.find({title: /.*Naruto.*/}) // Sintaxis abreviada
+db.movies.find({title: {$regex: /.*Naruto.*/}})  // Sintaxis con $regex
+
+use('sample_mflix');
+// Buscar todas las películas que comiencen con la palabra "Life" en el título, 
+db.movies.find({title: /^Life.*/}, {title: 1, _id: 0}) 
+
+use('sample_mflix');
+// Buscar todas las películas que terminen con la letra "z" en el título
+db.movies.find({title: /.*z$/}, {title: 1, _id: 0})
+
+// multiline
+use('sample_mflix');
+// Buscar todas las películas que contengan la palabra "Gol" en el fullplot
+db.movies.find({fullplot: /.*Gol.*/m}, {fullplot: 1, _id: 0}) // Sintaxis abreviada

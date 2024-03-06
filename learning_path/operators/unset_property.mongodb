@@ -1,0 +1,12 @@
+use("sample_mflix");
+
+db.users.updateMany(
+   {
+      email: { $ne: 'rjak727@gmail.com' } // Excluir documentos con el email específico
+   },
+   {
+      $unset: {
+         username: 'jimcostdev'
+      }
+   }
+);

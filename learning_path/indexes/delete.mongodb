@@ -1,0 +1,6 @@
+// eliminar index
+use('sample_analytics')
+db.customers.dropIndex({ "active": 1, "birthdate": -1, name: 1}) // eliminar index por referencia
+
+use('sample_analytics')
+db.customers.dropIndex("active_1_birthdate_-1_name_1") // eliminar index por nombre

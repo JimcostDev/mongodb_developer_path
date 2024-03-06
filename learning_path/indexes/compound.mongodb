@@ -1,0 +1,9 @@
+// compound index (índice compuesto) es un índice que contiene más de un campo.
+// puede contener campos de matriz y campos de documento.
+
+// crear un indice compuesto para los campos active, birthdate y name, -1 indica que el campo se ordena de forma descendente
+use('sample_analytics')
+db.customers.createIndex({ "active": 1, "birthdate": -1, name: 1})
+
+use('sample_analytics')
+db.customers.explain().find({ "active": true, "birthdate": "1994-10-27", "name": "Mccarthy"})

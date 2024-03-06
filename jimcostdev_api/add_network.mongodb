@@ -1,0 +1,38 @@
+
+use("jimcostdev_api")
+db.social_networks.insertMany([
+    {
+        _id: 1,
+        title: "github",
+        info_network: { 
+        url: "https://github.com/JimcostDev",
+        username: "@JimcostDev"
+        },
+    },
+    {
+        _id: 2,
+        title: "instagram",
+        info_network: { 
+        url: "https://www.instagram.com/jimcostdev",
+        username: "@jimcostdev"
+        },
+    },
+    {
+        _id: 3,
+        title: "linkedin",
+        info_network: { 
+        url: "https://www.linkedin.com/in/ronaldo-jimenez",
+        username: "@ronaldo-jimenez"
+        },
+    },
+    {
+        _id: 4,
+        title: "platzi",
+        info_network: { 
+        url: "https://platzi.com/p/JimcostDev/",
+        username: "@JimcostDev"
+        },
+    },
+
+])
+    

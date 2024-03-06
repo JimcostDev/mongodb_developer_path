@@ -1,0 +1,12 @@
+use("football");
+db.scorers.findAndModify({
+    query: {
+        jugador: "Radamel Falcao",
+    },
+    update: {
+        $inc: {
+            goles: 2
+        }
+    },
+    new: true // Indica si se debe devolver el documento original o el documento modificado.
+});

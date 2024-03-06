@@ -1,0 +1,13 @@
+use('sample_restaurants')
+db.restaurants.find({ "cuisine": "American"}, {"name": 1, "cuisine": 1}).sort({ "cuisine": 1 })
+
+// crear el index
+use('sample_restaurants')
+db.restaurants.createIndex( { "cuisine": 1 } )
+
+
+// crear index único (unique constraint)
+use('sample_restaurants')
+db.restaurants.find({ "restaurant_id": "40356018"})
+use('sample_restaurants')
+db.restaurants.createIndex( { "restaurant_id": 1 }, { unique: true })

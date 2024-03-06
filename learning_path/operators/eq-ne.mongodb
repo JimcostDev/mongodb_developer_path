@@ -1,0 +1,21 @@
+use("sample_restaurants")
+// using $eq
+db.products.find({price: 12}) // implicitamente
+db.products.find({price: {$eq: 12}}) // explicitamente
+
+use("sample_restaurants");
+// using $ne
+db.products.find({price: {$ne: 12}});
+
+
+// aumentar precio de todos lo que no sean 12
+use("sample_restaurants");
+db.products.updateMany(
+    {price: {$ne: 12}},
+    {
+        $inc: 
+        {
+            price: 2
+        }
+    }
+);

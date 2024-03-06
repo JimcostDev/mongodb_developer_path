@@ -1,0 +1,40 @@
+use("football")
+db.teams.replaceOne(
+    {
+      _id: ObjectId("65cb8d4b73c22307b9a89b24"),
+    },
+    {
+      name: "Arsenal",
+      league: "Premier League",
+      country: "England"
+    }
+  )
+
+  /*
+        La principal diferencia entre replace y update en MongoDB es cómo se modifican los documentos en una colección:
+
+        Replace:
+        Reemplaza un documento completo por otro.
+        No se pueden usar operadores de actualización como $inc o $set.
+        Útil para reemplazar un documento completo con nuevos datos.
+        
+        Update:
+        Modifica los campos específicos de un documento.
+        Se pueden usar operadores de actualización para modificar valores, agregar nuevos campos o eliminar campos existentes.
+        Útil para realizar cambios específicos en un documento.
+   */
+
+
+        use("football")
+        db.teams.updateOne(
+            {
+              _id: ObjectId("65cb8d4b73c22307b9a89b24"),
+            },
+            {
+                $set: 
+                {
+                    name: "Aston Villa"
+                }
+            }
+          )        
+        

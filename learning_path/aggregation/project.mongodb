@@ -1,0 +1,15 @@
+// 1 = incluir
+// 0 = excluir
+// field: new value
+// Modifica los documentos de salida seleccionando, excluyendo o transformando campos.
+use('football');
+db.scorers.aggregate([
+  {
+    $project: {
+      _id: 0,
+      jugador: 1,
+      goles: 1,
+      liga: "$torneo"
+    }
+  }
+]);

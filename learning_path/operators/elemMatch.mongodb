@@ -1,0 +1,13 @@
+// uso de $elemMatch
+use("sample_restaurants")
+db.products.find({
+  tags: {
+    $elemMatch: { $eq: "free gluten" }
+  }
+});
+
+// uso de $in
+use("sample_restaurants")
+db.products.find({
+  tags: { $in: ["free gluten"] }
+});

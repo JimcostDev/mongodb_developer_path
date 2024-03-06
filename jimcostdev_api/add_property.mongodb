@@ -1,0 +1,17 @@
+use("jimcostdev_api");
+
+var coleccion = 'education';
+var valor = 2024;
+
+// Utiliza el método update con la opción multi:true para actualizar todos los documentos
+db.getCollection(coleccion).updateMany(
+   {}, // Criterio de búsqueda vacío para que afecte a todos los documentos
+   {
+      $set: {
+         year: valor
+      }
+   },
+   {
+      multi: true
+   }
+);

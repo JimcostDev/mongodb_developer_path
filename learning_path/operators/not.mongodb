@@ -1,0 +1,9 @@
+// $not se usa para seleccionar documentos donde el valor de un campo no cumple con la condición especificada.
+// busca los equipos que no son de Italia 
+use("football");
+db.teams.find(
+    { 
+        country: { $not: { $eq: "Italy" } } 
+    }, 
+    { _id: 0, name: 1 }
+);

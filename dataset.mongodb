@@ -1,0 +1,88 @@
+use("football");
+db.scorers.insertMany([
+    { jugador: "Lionel Messi", equipo: "Inter Miami", goles: 25, torneo: "MLS", temporada: "2023-2024" },
+    { jugador: "Robert Lewandowski", equipo: "Barcelona", goles: 27, torneo: "La Liga", temporada: "2023-2024" },
+    { jugador: "Cristiano Ronaldo", equipo: "Al Nassar", goles: 31, torneo: "Liga Arabe", temporada: "2023-2024" },
+    { jugador: "Erling Haaland", equipo: "Manchester City", goles: 36, torneo: "Premier League", temporada: "2023-2024" },
+    { jugador: "Kylian Mbappé", equipo: "PSG", goles: 29, torneo: "La Liga", temporada: "2023-2024" },
+    { jugador: "Neymar Jr", equipo: "Al Hilal", goles: 23, torneo: "Liga Arabe", temporada: "2023-2024" },
+    { jugador: "Mohamed Salah", equipo: "Liverpool", goles: 28, torneo: "Premier League", temporada: "2023-2024" },
+    { jugador: "Radamel Falcao", equipo: "Rayo Vallecano", goles: 18, torneo: "La Liga", temporada: "2023-2024" },
+    { jugador: "Harry Kane", equipo: "Bayern Munich", goles: 26, torneo: "Bundesliga", temporada: "2023-2024" },
+])
+
+use("football");
+db.posiciones.insertMany([
+    {
+      "equipo": "Manchester City",
+      "partidos_jugados": {
+        "ganados": 0,
+        "empatados": 0,
+        "perdidos": 0
+      },
+      "goles": {
+        "favor": 0,
+        "contra": 0
+      },
+      "diferencia_goles": 0,
+      "puntos": 0
+    },
+    {
+      "equipo": "Liverpool FC",
+      "partidos_jugados": {
+        "ganados":0,
+        "empatados":0,
+        "perdidos": 0
+      },
+      "goles": {
+        "favor": 0,
+        "contra": 0
+      },
+      "diferencia_goles": 0,
+      "puntos": 0
+    },
+    {
+      "equipo": "Chelsea FC",
+      "partidos_jugados": {
+        "ganados": 0,
+        "empatados": 0,
+        "perdidos": 0
+      },
+      "goles": {
+        "favor": 0,
+        "contra": 0
+      },
+      "diferencia_goles": 0,
+      "puntos": 0
+    },
+    {
+      "equipo": "Manchester United",
+      "partidos_jugados": {
+        "ganados": 0,
+        "empatados": 0,
+        "perdidos": 0
+      },
+      "goles": {
+        "favor": 0,
+        "contra": 0
+      },
+      "diferencia_goles": 0,
+      "puntos": 0
+    }
+  ])
+  
+
+
+use("football");
+db.teams.insertMany([
+    { name: "Juventus", league: "Serie A", country: "Italy" },
+    { name: "AC Milan", league: "Serie A", country: "Italy" },
+    { name: "Bayern Munich", league: "Bundesliga", country: "Germany" },
+    { name: "Borussia Dortmund", league: "Bundesliga", country: "Germany" },
+    { name: "Real Madrid", league: "La Liga", country: "Spain" },
+    { name: "Barcelona", league: "La Liga", country: "Spain" },
+    { name: "Manchester City", league: "Premier League", country: "England" },
+    { name: "Liverpool", league: "Premier League", country: "England" },
+    { name: "Inter Milan", league: "Serie A", country: "Italy" },
+    { name: "AS Roma", league: "Serie A", country: "Italy" }
+  ])

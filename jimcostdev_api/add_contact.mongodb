@@ -1,0 +1,13 @@
+use("jimcostdev_api")
+db.contact.insertOne({
+    _id: 1,
+    avatar: "https://avatars.githubusercontent.com/u/53100460?v=4",
+    nacionality: "Colombia",
+    phone_number: "(+34) 624 49 9125",
+    i_live_in: "Alcúdia, España",
+    email: "jimcostdev@gmail.com",
+    web: {
+      url:"https://www.jimcostdev.com",
+      name: "jimcostdev.com"
+    }
+  })

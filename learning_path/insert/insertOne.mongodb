@@ -1,0 +1,7 @@
+
+use("sample_mflix")
+db.users.insertOne({
+    name: "Ronaldo Jiménez Acosta",
+    email: "rjak727@gmail.com",
+    password: "123456"
+})

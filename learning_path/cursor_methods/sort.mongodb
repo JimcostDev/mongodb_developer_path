@@ -1,0 +1,14 @@
+use('football');
+// Sort by country in ascending order(1) or descending order(-1)
+db.teams.find().sort({country: 1}); 
+
+// show only the team name and sort by country in descending order
+db.teams.find({}, {name: 1, _id: 0}).sort({country: -1});
+
+
+use('jimcostdev_api');
+db.certifications.find().sort({company: 1});
+
+
+use('jimcostdev_api');
+db.education.find().sort({year: -1});

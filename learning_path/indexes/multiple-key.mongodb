@@ -1,0 +1,15 @@
+// Multiple Key Indexes es un índice donde uno de los campos indexados contiene un array.
+// El número máximo de campos de matriz por índice multiclave es 1.
+// Si un índice tiene varios campos, solo uno de ellos puede ser una matriz.
+
+// consultar los indices de la coleccion customers
+use('sample_analytics')
+db.customers.getIndexes()
+
+// usar el metodo explain para ver el plan de ejecucion de la consulta
+use('sample_analytics')
+db.customers.explain().find({ "accounts": 627788})
+
+// crear un indice para el campo accounts (multiple key index)
+use('sample_analytics')
+db.customers.createIndex({ "accounts": 1})

@@ -1,0 +1,31 @@
+use("football");
+// Obtener el partido
+var partido = db.partidos.findOne({ _id: ObjectId("65cd01c0ad4c7fc056e03389") });
+
+// Actualizar la tabla de posiciones
+db.posiciones.updateMany(
+    { equipo: { $in: [partido.local, partido.visitante] } },
+    {
+        $inc: {
+            'partidos_jugados.ganados': partido.goles_local > partido.goles_visitante ? (partido.local === partido.equipo ? 1 : 0) : 0,
+            'partidos_jugados.empatados': partido.goles_local === partido.goles_visitante ? 1 : 0,
+            'partidos_jugados.perdidos': partido.goles_local < partido.goles_visitante ? (partido.local !== partido.equipo ? 1 : 0) : 0,
+            'goles.favor': partido.local === partido.equipo ? partido.goles_local : partido.goles_visitante,
+            'goles.contra': partido.local === partido.equipo ? partido.goles_visitante : partido.goles_local,
+            'diferencia_goles': partido.goles_local - partido.goles_visitante
+        }
+    }
+);
+
+// Actualizar puntos
+db.posiciones.find().forEach(function(posicion) {
+    var puntos = 0;
+    puntos += posicion.partidos_jugados.ganados * 3;
+    puntos += posicion.partidos_jugados.empatados;
+    db.posiciones.updateMany(
+        { _id: posicion._id },
+        { $set: { puntos: puntos } }
+    );
+});
+
+

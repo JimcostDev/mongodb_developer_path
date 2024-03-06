@@ -1,0 +1,14 @@
+// *********** usando $gt(>) y $gte(>=) ***********
+use("football")
+
+// jugadores con goles mayor a 25
+db.scorers.find({"goles": {$gt: 25}})
+
+// jugadores con goles mayor o igual a 28
+db.scorers.find({"goles": {$gt: 28}})
+
+// jugadores con goles mayor o igual a 15 y menor o igual a 22
+db.scorers.find({"goles": {$gte: 15, $lte: 22}})
+
+
+

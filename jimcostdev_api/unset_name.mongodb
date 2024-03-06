@@ -1,0 +1,13 @@
+use("jimcostdev_api");
+
+
+db.perfil.updateOne(
+   {
+    username: 'jimcostdev'
+   },
+   {
+      $unset: {
+         name: ''
+      }
+   }
+)

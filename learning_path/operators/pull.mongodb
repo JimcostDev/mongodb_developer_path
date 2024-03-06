@@ -1,0 +1,16 @@
+use("sample_mflix");
+
+
+// Utiliza el método update con $pull para eliminar un elemento de un array.
+// $each Agrega múltiples valores al campo del Array.
+db.users.updateMany(
+    { }, 
+    {
+       $pull: {
+          roles: {
+             $in: ["test", "super-admin", "dev"]
+          }
+       }
+    }
+ );
+ 

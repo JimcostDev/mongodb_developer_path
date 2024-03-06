@@ -1,0 +1,22 @@
+// buscar los productos que tengan al menos uno de los tags "picante" o "free gluten"
+use('sample_restaurants')
+db.products.find({tags: {$in:['picante', 'free gluten']}})
+
+// buscar los productos que no tengan el tag "picante"
+use('sample_restaurants')
+db.products.find({tags: {$nin:['picante']}})
+
+
+// ******* solo para arrays ******** //
+
+// $all es como un and
+use('sample_restaurants')
+db.products.find({tags: {$all:['picante', 'mexico']}}) 
+
+// $size es para buscar arrays de un tamaño específico
+use('sample_restaurants')
+db.products.find({tags: {$size: 2}}) 
+
+// $elemMatch es para buscar documentos que cumplan con ciertas condiciones
+use('sample_restaurants')
+db.products.find({tags: {$elemMatch: {$eq: 'picante'}}})

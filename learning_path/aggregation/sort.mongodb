@@ -1,0 +1,7 @@
+// ordenar por goles de forma descendente
+use('football');
+db.scorers.aggregate([
+  {
+    $sort: { goles: -1 }
+  }
+]);

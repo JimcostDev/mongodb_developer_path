@@ -1,0 +1,13 @@
+use("sample_mflix");
+
+var collection = 'users';
+var value = ["admin", "dev"];
+
+db.getCollection(collection).updateMany(
+   {}, // Criterio de búsqueda vacío para que afecte a todos los documentos
+   {
+      $set: {
+         roles: value
+      }
+   }
+);

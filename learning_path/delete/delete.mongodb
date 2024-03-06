@@ -1,0 +1,13 @@
+use("sample_training")
+// eliminar solo uno
+db.iot.deleteOne({_id: 5});
+
+
+use("sample_training")
+// eliminar todos los que coincidan con la consulta
+db.iot.deleteMany({
+    sensor: "A002"
+})
+
+// eliminar todos los elementos de un documento
+db.iot.drop()

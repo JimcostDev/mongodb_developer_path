@@ -1,0 +1,2 @@
+use('football');
+db.scorers.find().skip(5).limit(5);

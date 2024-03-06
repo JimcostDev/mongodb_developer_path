@@ -1,0 +1,9 @@
+use("jimcostdev_api")
+db.projects.insertOne({
+    _id: 1,
+    image: "https://avatars.githubusercontent.com/u/53100460?v=4",
+    title: "API de Estandarización de Menús para Restaurantes",
+    description: "Este proyecto se centra en proporcionar una API robusta que facilite la estandarización de menús para restaurantes. Ofrece un conjunto completo de operaciones CRUD (Crear, Leer, Actualizar y Eliminar) diseñadas para la gestión ágil de categorías y productos, así como funcionalidades completas para la administración de usuarios.",
+    stack: ['python', 'fastapi', 'mongodb'],
+    link: "https://github.com/JimcostDev/menu-standardization-api"
+  })

@@ -1,0 +1,7 @@
+use('football');
+db.scorers.aggregate([
+    {
+        $count: "goleadores" 
+    }
+])
+  

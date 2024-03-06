@@ -1,0 +1,12 @@
+use('football');
+db.scorers.find({goles: {$gte: 30}});
+
+// $expr se utiliza para comparar campos de un documento
+use('football');
+db.scorers.find({
+    $expr: {
+        $gte: ['$goles', '$partidos_jugados']
+    }
+});
+
+

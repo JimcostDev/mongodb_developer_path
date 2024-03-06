@@ -1,0 +1,42 @@
+
+use("jimcostdev_api")
+db.work_experience.insertMany([
+    {
+        _id: 1,
+        rol: "Backend Developer",
+        company: "Universidad UTAP",
+        location: "Cali, Colombia",
+        activities: [
+          "Desarrollé nuevas nuevas funcionalidades en las aplicaciones web y de escritorio (.Net y C#).",
+          "Mantenimiento de la base de datos (SQL Server).",
+          "Administración de las plataformas educativas (Office 365 y G-Suite).",
+          "Trabajé en equipo para crear y lanzar la plataforma de egresados de la institución (.NET y Javascript).",
+          "Creación del portal web de pagos (Beta)."
+        ],
+        initial_date: "2021-04-01",
+        end_date: "2022-03-28"
+      },
+      {
+        _id: 2,
+        rol: "Docente de Programación",
+        company: "Freelance",
+        location: "Remoto",
+        activities: [
+          "Clases y tutoriales sobre programación y desarrollo de software."
+        ],
+        initial_date: "2022-10-01",
+        end_date: new Date()
+      },
+      {
+        _id: 3,
+        rol: "Backend Developer",
+        company: "Freelance",
+        location: "Remoto",
+        activities: [
+            "Desarrollo de APIs para diferentes tipos de aplicaciones."
+        ],
+        initial_date: "2023-12-01",
+        end_date: new Date()
+      }
+])
+    

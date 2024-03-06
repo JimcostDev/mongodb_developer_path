@@ -1,0 +1,7 @@
+use("sample_mflix");
+
+db.users.find();
+db.users.findOne({"email": "rjak727@gmail.com"});
+db.users.findOne({"_id": ObjectId("59b99db4cfa9a34dcd7885b6")});
+
+

@@ -1,0 +1,16 @@
+use("sample_mflix");
+
+
+// Utiliza el método update con $push para añadir elementos al array 'skills'
+// $each Agrega múltiples valores al campo del Array.
+db.users.updateMany(
+    { }, 
+    {
+       $push: {
+          roles: {
+             $each: ["test", "super-admin"]
+          }
+       }
+    }
+ );
+ 

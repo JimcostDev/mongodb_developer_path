@@ -1,0 +1,3 @@
+use("football");
+db.posiciones.find().sort({ puntos: -1, diferencia_goles: -1 });
+  

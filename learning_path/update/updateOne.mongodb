@@ -1,0 +1,26 @@
+use("sample_mflix");
+db.users.updateOne(
+    { email: "sean_bean@gameofthron.es", name: "Ned Stark" },
+    {
+        $set: 
+        {
+            name: "RONALDO JIMENEZ",
+            email: "rjak727@gmail.com"
+        }
+    }
+);
+
+
+use("football")
+db.teams.replaceOne(
+    {
+      _id: ObjectId("65cb8d4b73c22307b9a89b24"),
+    },
+    {
+        $set: 
+        {
+            name: "Aston Villa",
+        }
+    }
+  )
+

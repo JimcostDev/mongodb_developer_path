@@ -1,0 +1,3 @@
+use('football');
+// Sort by country in  descending order(-1) and limit to 4
+db.teams.find().sort({country: -1}).limit(4); 

@@ -1,0 +1,23 @@
+use('sample_training')
+// esta consulta agrega un campo llamado pop_2025 que es el resultado de multiplicar el campo pop por 1.0031 y redondear el resultado.
+db.zips.aggregate([
+    {$set: {
+    pop_2025: {$round: {$multiply: [1.0031,"$pop"]}}
+        }
+    }
+])
+
+
+// esta consulta agrega un campo llamado puntaje_bota_oro que es el resultado de copiar el campo goles * 2.
+use('football');
+db.scorers.aggregate([
+        {
+            $set: {
+                puntaje_bota_oro: {$multiply: [2,"$goles"]} 
+            }
+        }, // Add a closing bracket here
+        {
+            $sort: { puntaje_bota_oro: -1 } // Ordenar los documentos por el campo "total_goles" en orden descendente
+        }
+    ]);
+  

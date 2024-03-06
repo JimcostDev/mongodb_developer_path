@@ -1,0 +1,20 @@
+// Find all teams from Italy or Spain  (or)
+use("football");
+db.teams.find({ $or: [{ country: "Italy" }, { country: "Spain" }] });
+
+// Find all teams from England than start with "L" (and)
+use("football"); 
+db.teams.find({
+    $and: [
+      { country: "England" },
+      { name: /^L/ } // Utilizamos una expresión regular para buscar nombres que comienzan con "L"
+    ]
+})
+
+// implicitamente se puede omitir el operador $and
+use("football"); 
+db.teams.find({
+   country: "England" ,
+   name: /^L/  // Utilizamos una expresión regular para buscar nombres que comienzan con "L"
+})
+  
