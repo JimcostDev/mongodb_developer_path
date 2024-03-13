@@ -20,3 +20,5 @@ Las funciones de agregado más comunes son:
 - `$group`: Agrupa documentos por uno o más campos y aplica otras funciones de agregación a los grupos.
 - `$project`: Modifica los documentos de salida seleccionando, excluyendo o transformando campos.
 - `$sort`: Ordena los documentos por uno o más campos.
+
+Son mas adecuadas para operaciones analiticas o de manipulación de datos.
