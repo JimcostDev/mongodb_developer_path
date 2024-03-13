@@ -1,0 +1,16 @@
+// Iniciar una sesión, esto permite realizar transacciones
+const session = db.getMongo().startSession()
+session.startTransaction() 
+
+const positions = session.getDatabase('football').getCollection('posiciones')
+positions.updateOne({equipo: 'Liverpool'}, {$inc: {diferencia_goles: 2}})
+positions.updateOne({equipo: 'Manchester City'}, {$inc: {diferencia_goles: -2}})
+
+// realizar la transacción
+session.commitTransaction()
+
+// no realizar la transacción
+session.abortTransaction()
+
+// cerrar la sesión
+session.endSession()
