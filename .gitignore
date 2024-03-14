@@ -241,3 +241,11 @@ $RECYCLE.BIN/
 
 # secrets
 config.env
+
+# dotnet 
+*.suo
+*.user
+*.sln.docstates
+bin/
+obj/
+.vs/
