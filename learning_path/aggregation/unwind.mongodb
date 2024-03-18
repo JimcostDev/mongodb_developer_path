@@ -1,0 +1,6 @@
+// $unwind nos permite deshacer un array y devolver un documento por cada elemento del array
+use('sample_restaurants')
+db.products.aggregate([
+    { $unwind: "$tags" }
+  ])
+  
