@@ -1,0 +1,26 @@
+
+// filtar por país y ordenar por precio
+use('sample_airbnb')
+
+db.listingsAndReviews.aggregate(
+    {
+        $match: {"address.country":"United States"}
+    },
+    {
+        $project: {"name":1, "price":1}
+    },
+    {
+        $sort: {"price":1}
+    },
+    {
+        $limit: 5
+    }
+)
+
+// con query language seria asi:
+use('sample_airbnb')
+db.listingsAndReviews.find(
+    {"address.country":"United States"}, 
+    {"name":1, "price":1}) // proyeccion
+    .sort({"price":1})
+    .limit(5)
