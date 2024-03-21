@@ -6,37 +6,51 @@ db.work_experience.insertMany([
         rol: "Backend Developer",
         company: "Universidad UTAP",
         location: "Cali, Colombia",
-        activities: [
-          "Desarrollé nuevas nuevas funcionalidades en las aplicaciones web y de escritorio (.Net y C#).",
-          "Mantenimiento de la base de datos (SQL Server).",
-          "Administración de las plataformas educativas (Office 365 y G-Suite).",
-          "Trabajé en equipo para crear y lanzar la plataforma de egresados de la institución (.NET y Javascript).",
-          "Creación del portal web de pagos (Beta)."
-        ],
-        initial_date: "2021-04-01",
-        end_date: "2022-03-28"
+        activities: "Desarrollé nuevas nuevas funcionalidades para la plataforma de la universidad, así como también realicé mantenimiento y mejoras en la misma.",
+        initial_date: {
+          $date:{
+            $year: 2021,
+            $month: 4,
+            $day: 1
+          }
+        },
+        end_date: {
+          $date:{
+            $year: 2022,
+            $month: 3,
+            $day: 28
+          }
+        }
       },
       {
         _id: 2,
         rol: "Docente de Programación",
         company: "Freelance",
         location: "Remoto",
-        activities: [
-          "Clases y tutoriales sobre programación y desarrollo de software."
-        ],
-        initial_date: "2022-10-01",
-        end_date: new Date()
+        activities: "Clases y tutoriales sobre programación y desarrollo de software.",
+        initial_date: {
+          $date:{
+            $year: 2022,
+            $month: 10,
+            $day: 1
+          }
+        },
+        end_date: null
       },
       {
         _id: 3,
         rol: "Backend Developer",
         company: "Freelance",
         location: "Remoto",
-        activities: [
-            "Desarrollo de APIs para diferentes tipos de aplicaciones."
-        ],
-        initial_date: "2023-12-01",
-        end_date: new Date()
+        activities:"Desarrollo de APIs para diferentes tipos de aplicaciones.",
+        initial_date: {
+          $date:{
+            $year: 2023,
+            $month: 12,
+            $day: 1
+          }
+        },
+        end_date: null
       }
 ])
     
