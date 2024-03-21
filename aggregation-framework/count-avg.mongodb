@@ -1,0 +1,40 @@
+// Los operadores de acumulación: $sum, $avg, $first, $last, $max y $min, se utilizan para realizar cálculos en los documentos agrupados.
+use("sample_airbnb")
+
+db.listingsAndReviews.aggregate([
+    {
+      $match: {"address.country_code": "US"},
+    },
+    {
+      $sort:{ "property_type": 1, "price": 1},
+    },
+    {
+      $group: { 
+        _id: "$property_type", // agrupar por tipo de propiedad
+        contarPropiedades: { $sum: 1 }, 
+        precioPromedio: { $avg: "$price" },
+        "masBajo": {
+            $first: { // primer elemento (mas barato)
+                "nombre": "$name",
+                "precio": "$price"
+            }
+        },
+        "masAlto":{ 
+            $last: { // ultimo elemento (mas caro)
+                "nombre": "$name",
+                "precio": "$price"
+            }
+        }
+      }
+    },
+    {
+        $project: {
+            "_id": 0,
+            "Tipo de propiedad": "$_id",
+            "Menor precio": "$masBajo.precio",
+            "Mayor precio": "$masAlto.precio",
+            "Opciones disponibles": "$contarPropiedades",
+            "Precio promedio": "$precioPromedio"
+        }
+    }
+  ])
