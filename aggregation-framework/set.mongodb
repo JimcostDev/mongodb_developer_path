@@ -1,0 +1,61 @@
+// $set sirve para crear campos nuevos en los documentos de salida. 
+// Se utiliza para agregar nuevos campos a los documentos de entrada o para actualizar los valores de los campos existentes.
+use("sample_airbnb")
+
+db.listingsAndReviews.aggregate([
+    {
+      $match: {"address.country_code": "US"},
+    },
+    {
+      $sort:{ "property_type": 1, "price": 1},
+    },
+    {
+      $group: { 
+        _id: "$property_type", 
+        contarPropiedades: { $sum: 1 }, 
+        precioPromedio: { $avg: "$price" },
+        "masBajo": {
+            $first: { 
+                "nombre": "$name",
+                "precio": "$price"
+            }
+        },
+        "masAlto":{ 
+            $last: { // ultimo elemento (mas caro)
+                "nombre": "$name",
+                "precio": "$price"
+            }
+        }
+      }
+    },
+    {
+        $set:{
+          "Tipo de propiedad": "$_id",
+          "Cantidad de propiedades": "$contarPropiedades",
+          "Precio promedio": {$round:["$precioPromedio", 2]},
+          "propiedades destacadas":[
+            {
+              "tipo":"Mas barata",
+              "nombre":"$masBajo.nombre",
+              "precioDolar":"$masBajo.precio",
+              "precioEuro": {$round:[{$multiply: ["$masBajo.precio", 0.92]},2]}
+            },
+            {
+              "tipo":"Mas costosa",
+              "nombre":"$masAlto.nombre",
+              "precio":"$masAlto.precio",
+              "precioEuro": {$round:[{$multiply: ["$masAlto.precio", 0.92]},2]}
+            }
+          ]
+        }
+      },
+      { // excluir campos para evitar duplicados
+        $project: {
+            "_id": 0,
+            "contarPropiedades": 0,
+            "precioPromedio": 0,
+            "masBajo": 0,
+            "masAlto": 0
+        }
+      }
+  ])
