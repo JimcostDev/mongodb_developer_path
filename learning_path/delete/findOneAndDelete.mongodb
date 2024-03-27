@@ -1,0 +1,2 @@
+use('football')
+db.the_best_scorers.findOneAndDelete({_id: 'MLS'})
