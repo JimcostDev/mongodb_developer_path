@@ -1,0 +1,24 @@
+// persistencia de datos con $out, se crea una nueva colección con los datos obtenidos
+use('sample_airbnb')
+db.listingsAndReviews.aggregate([
+    {
+        $sort: {
+          "address.market": 1,
+          price: -1
+        }
+    },
+    {
+        $group: {
+          _id: "$address.market",
+          MasCostosas: {
+            $first:{
+                nombre: "$name",
+                precio: "$price"
+            }
+          }
+        }
+    },
+    {
+        $out: "propiedades_mas_costosas"
+    }
+])
