@@ -49,3 +49,37 @@ db.customers.aggregate([
         }
     }
 ])
+
+// obtener los equipos con mas goles
+use("football")
+db.teams.aggregate([
+    {
+        $lookup:{
+            from: "scorers",
+            localField: "name",
+            foreignField: "equipo",
+            as: "Goleadores"
+        }
+    },
+    {
+        $unwind: "$Goleadores"
+    },
+    {
+        $group: {
+          _id: "$name",
+          totalGoles: {
+            $sum: "$Goleadores.goles"
+          }
+        }
+    },
+    {
+        $sort: {totalGoles: -1}
+    },
+    {
+        $project: {
+          _id: 0,
+          Equipo: "$_id",
+          totalGoles: 1
+        }
+    }
+])
