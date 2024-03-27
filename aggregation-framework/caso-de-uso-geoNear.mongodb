@@ -1,0 +1,44 @@
+// que tanto varia el precio dependendiendo de la distancia de un punto geografico especifico
+// es decir vamos a calcular el promedio de los precios segun cuan cerca (menos de 2km) o lejos este del punto geografico especificado
+
+use("sample_airbnb")
+db.listingsAndReviews.aggregate([
+    {
+      $geoNear: {
+        near: {
+          type: "Point",
+          coordinates: [
+            -73.95552676483872,
+            40.7994839486901
+          ]
+        },
+        distanceField: "distancia",
+        maxDistance: 30000,
+        spherical: true
+        }
+    },
+    {
+        $match: { beds: {$ne: 0} } //dependiendo la cantidad de camas, el precio variara
+    },
+    {
+        $project: {
+          distancia: 1,
+          precioXcama: { $divide: ["$price", "$beds"] }
+        }
+    },
+    {
+        $group: {
+          _id: {
+            $cond:{
+                if: { $lte: ["$distancia", 2000] },
+                then: "Cerca",
+                else: "Lejos"
+            }
+          },
+          precioPromedio: { $avg: "$precioXcama" }
+        }
+    },
+    {
+        $sort: { _id: 1 }
+    }
+])

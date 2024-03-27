@@ -1,0 +1,19 @@
+// $geoNear se utiliza para encontrar documentos cerca de un punto geográfico especificado
+// filtra todos los documentos que estén a una distancia máxima de 3000 metros del punto geográfico especificado, en este caso central park
+use("sample_airbnb")
+db.listingsAndReviews.aggregate([
+    {
+      $geoNear: {
+        near: {
+          type: "Point",
+          coordinates: [
+            -73.95552676483872,
+            40.7994839486901
+          ]
+        },
+        distanceField: "distancia",
+        maxDistance: 3000,
+        spherical: true
+        }
+    }
+])
