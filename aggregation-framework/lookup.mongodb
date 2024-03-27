@@ -1,0 +1,51 @@
+// $lookup nos permite unir colecciones en MongoDB. En SQL, esto se conoce como una operación JOIN. 
+// $lookup realiza una operación de LEFT OUTER JOIN para unir las colecciones. 
+// Para cada documento de la colección “desde”, $lookup busca todos los documentos de la colección “local” que coincidan con la condición de igualdad. 
+// Si se encuentra al menos un documento, se crea un nuevo documento que contiene la combinación de ambos documentos.
+
+use("sample_analytics")
+db.customers.aggregate([
+    {
+        $lookup:{
+            from: "accounts",
+            localField: "accounts",
+            foreignField: "account_id",
+            as: "account_info"
+        }
+    },
+    {
+        $unwind: "$account_info"
+    },
+    {
+        $lookup:{
+            from: "transactions",
+            localField: "account_info.account_id",
+            foreignField: "account_id",
+            as: "account_transactions"
+        }
+    },
+    {
+        $unwind: "$account_transactions"
+    },
+    {
+        $group: {
+          _id: "$name",
+          totalCompras: {
+            $sum: {$size: "$account_transactions.transactions"}
+          }
+        }
+    },
+    {
+        $sort: {totalCompras: -1}
+    },
+    {
+        $limit: 5
+    },
+    {
+        $project: {
+          _id: 0,
+          Nombre: "$_id",
+          totalCompras: 1
+        }
+    }
+])
