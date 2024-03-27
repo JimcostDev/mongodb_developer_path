@@ -1,0 +1,39 @@
+// $unwind se usa para descomponer un array en sus elementos individuales.
+// top 10 amenities más populares en airbnb.
+use('sample_airbnb')
+db.listingsAndReviews.aggregate([
+    {
+        $unwind: "$amenities"
+    },
+    {
+        $group: {
+          _id: "$amenities",
+          count: { $sum: 1 }
+        }
+    },
+    {
+        $sort: { count: -1 }
+    },
+    {
+        $limit: 10
+    },
+    {
+        $project: {
+            _id: 0,
+            comodidad: "$_id",
+            cantidad: "$count",
+            porcentaje: {
+                $multiply: 
+                [
+                    {
+                        $divide: [
+                            "$count", 
+                            {$literal: 5600}
+                        ]
+                    }, 100
+                ]
+            }
+        }
+    }
+
+])
