@@ -28,3 +28,17 @@ db.listingsAndReviews.aggregate([
         }
     }
 ])
+
+
+use('football')
+db.scorers.aggregate([
+    {
+        $bucketAuto: {
+            groupBy: '$goles',
+            buckets: 5,
+            output: {
+                count: {$sum: 1}
+            }
+        }
+    }
+])
