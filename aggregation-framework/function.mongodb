@@ -1,0 +1,38 @@
+// trabajamos en local por que en atlas (free) estamos limitados y no podemos ejecutar funciones
+// las funciones en mongodb son como las vistas en sql, nos permiten reutilizar codigo
+
+// en este ejercicio vamos a contar las palabras de la descripcion de los alojamientos
+use('sample_airbnb')
+db.listingsAndReviews.aggregate([
+    {
+        $addFields: {
+          wordCount: {
+            $function:{
+                body: function(description){
+                    if(description){
+                        var words = description.split(' '); // divimos la descripcion en palabras, se divide por el espacio ' '
+                        return words.length;
+                    }
+                    else {
+                        return 0
+                    }
+                },
+                args: ['$description'], // pasamos la descripcion como argumento
+                lang: 'js'
+
+            }
+          }
+        }
+    },
+    {
+        $group: {
+            _id: '$property_type',
+            avgWordCount: { $avg: '$wordCount'}
+        }
+    },
+    {
+        $sort: {
+            avgWordCount: 1
+        }
+    }
+])
