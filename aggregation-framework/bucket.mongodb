@@ -1,0 +1,30 @@
+// $bucket se utiliza para dividir los documentos en grupos basados en un rango de valores y, a continuación, contar el número de documentos en cada grupo.
+// $bucketAuto determina automáticamente los límites de los intervalos de los grupos.
+
+use('sample_airbnb')
+db.listingsAndReviews.aggregate([
+    {
+        $bucket: {
+            groupBy: '$review_scores.review_scores_rating',
+            boundaries: [0, 40, 60, 80, 100],
+            default: 'Other',
+            output: {
+                count: {$sum: 1}
+            }
+        }
+    }
+])
+
+
+use('sample_airbnb')
+db.listingsAndReviews.aggregate([
+    {
+        $bucketAuto: {
+            groupBy: '$review_scores.review_scores_rating',
+            buckets: 4,
+            output: {
+                count: {$sum: 1}
+            }
+        }
+    }
+])
