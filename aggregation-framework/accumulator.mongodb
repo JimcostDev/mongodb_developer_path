@@ -1,0 +1,41 @@
+// en este ejercicio vamos a consultar la media de ameneties de aquellas propiedades que tengan mejores calificaciones o peores calificaciones
+use('sample_airbnb')
+db.listingsAndReviews.aggregate([
+    {
+        $match:{'review_scores.review_scores_rating': {$lte: 40}}
+    },
+    {
+        $addFields: {
+          amenitiesQty: {$size: '$amenities'}
+        }
+    },
+    {
+        $group: {
+            _id: null,
+            avgRating: {
+                $accumulator:{
+                    init: function(){
+                        return {sum: 0, count: 0}
+                    },
+                    accumulateArgs:['$amenitiesQty'],
+                    accumulate: function(state, size){
+                        return {sum: state.sum + size, count: state.count + 1}
+                    },
+                    merge: function(state1, state2){
+                        return {sum: state1.sum + state2.sum, count: state1.count + state2.count}
+                    },
+                    finalize: function(state){
+                        return state.sum / state.count
+                    },
+                    lang: 'js'
+                }
+            }
+        }
+    },
+    {
+        $sort: {avgRating: -1}
+    },
+    {
+        $limit: 1
+    }
+])
