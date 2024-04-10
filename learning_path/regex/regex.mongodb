@@ -16,3 +16,18 @@ db.movies.find({title: /.*z$/}, {title: 1, _id: 0})
 use('sample_mflix');
 // Buscar todas las películas que contengan la palabra "Gol" en el fullplot
 db.movies.find({fullplot: /.*Gol.*/m}, {fullplot: 1, _id: 0}) // Sintaxis abreviada
+
+
+
+// Busca todos los alojamientos en Barcelona con un precio inferior a 100€ por noche. 
+// Muestra la información del alojamiento, incluyendo nombre, precio, tipo de propiedad y ubicación.
+use('sample_airbnb')
+db.listingsAndReviews.find(
+    { 
+        'price': {$lt: 100},
+        'address.street': /^Barcelona.*/,
+    }, 
+    {
+        _id: 0,  name: 1, price: 1, property_type: 1, 'address.street': 1
+    }
+)
