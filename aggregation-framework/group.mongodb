@@ -27,3 +27,24 @@ db.listingsAndReviews.aggregate([
       }
     },
   ])
+
+
+// Calcula el número promedio del precio por noche de los alojamientos completos ("Entire home/apt") Barcelona. 
+// Utiliza el Aggregation Framework para lograr esto.
+use('sample_airbnb')
+db.listingsAndReviews.aggregate([
+    {
+        $match: {
+            'address.market': 'Barcelona',
+            room_type: 'Entire home/apt'
+        }
+    },
+    {
+        $group: {
+            _id: null,
+            avgPrice: {
+                $avg: '$price'
+            }
+        }
+    }
+])
