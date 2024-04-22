@@ -1,0 +1,180 @@
+// insert one
+use('test')
+db.jimcost.insertOne({
+    name: 'JimcostDev', 
+    age: 24, 
+    team: 'Cali'
+})
+
+// insert many
+use('test')
+db.jimcost.insertMany([
+    {name: 'JimcostDev',  age: 24, team: 'Cali', skils: ['Java', 'Python', 'NodeJs']},
+    {name: 'usertest',  age: 23, team: 'Cali', skils: ['Rust', 'Python', 'Go']},
+    {name: 'belux',  age: 22, team: 'Cali', skils: ['Js', 'Ruby', 'PHP']},
+])
+
+// rename property
+use('test')
+db.jimcost.updateMany({}, {$rename: {'skils': 'skills'}})
+
+
+// find 
+use('test')
+db.jimcost.find()
+
+use('test')
+db.jimcost.findOne({skills: 'Python'})
+
+// find with projection
+use('test')
+db.jimcost.find({}, {name: 1, skills: 1, _id: 0})
+
+
+// update
+use('test')
+db.jimcost.updateOne({name: 'JimcostDev'}, {$set: {skills: ['Git', 'Python', 'MongoDB', 'FastAPI']}})
+
+// upsert
+use('test')
+db.jimcost.updateOne(
+    {
+        name: 'xdev'
+    }, 
+    {
+        $set: {
+            name: 'xdev',  age: 28, team: 'Liverpool', skils: ['Java', 'C#', 'C']
+        }
+    }, 
+    {
+        upsert: true
+    })
+
+// delete
+use('test')
+db.jimcost.deleteOne({_id: ObjectId('661d173bcf5dfa510b54c0c0')})
+
+// operadores logicos
+use('test')
+db.jimcost.find({$or: [{skills: 'Python'}, {skills: 'Js'}]})
+// in
+use('test')
+db.jimcost.find({skills: {$in: ['Python', 'Js']}})
+
+use('test')
+db.jimcost.find({$and: [{skills: 'Python'}, {skills: 'Git'}]})
+// implicit
+use('test')
+db.jimcost.find({skills: 'Python', skills: 'Git'})
+
+
+// operadores de comparacion
+use('test')
+db.jimcost.find({age: {$gt: 23}})
+use('test')
+db.jimcost.find({age: {$gte: 23}})
+use('test')
+db.jimcost.find({age: {$lt: 23}})
+use('test')
+db.jimcost.find({age: {$lte: 23}})
+
+
+// indices
+use('test')
+db.jimcost.find({name: 'JimcostDev'}).explain('executionStats')
+use('test')
+db.jimcost.find({name: 'JimcostDev', team: 'Cali'}).explain('executionStats')
+
+// single index
+use('test')
+db.jimcost.createIndex({name: 1})
+
+// compound index
+use('test')
+db.jimcost.createIndex({name: 1, team: 1})
+
+// get indexes
+use('test')
+db.jimcost.getIndexes()
+
+//busca todos los alojamientos en Barcelona con un precio inferior a 100€ por noche. Muestra la información del alojamiento, incluyendo nombre, precio, tipo de propiedad y ubicación.
+use('sample_airbnb')
+db.listingsAndReviews.find(
+    { 
+        'price': {$lt: 100},
+        'address.street': /^Barcelona.*/,
+    }, 
+    {
+        _id: 0,  name: 1, price: 1, property_type: 1, 'address.street': 1
+    }
+)
+
+// Aggregation Framework
+// Calcula el número promedio del precio por noche de los alojamientos completos ("Entire home/apt") Barcelona. 
+// Utiliza el Aggregation Framework para lograr esto.
+use('sample_airbnb')
+db.listingsAndReviews.aggregate([
+    {
+        $match: {
+            'address.market': 'Barcelona',
+            room_type: 'Entire home/apt'
+        }
+    },
+    {
+        $group: {
+            _id: null,
+            avgPrice: {
+                $avg: '$price'
+            }
+        }
+    }
+])
+
+/*
+    $match: es un operador que filtra los documentos de entrada para permitir que 
+    solo pasen los documentos que coinciden con la condición especificada. 
+    (En nuestro caso, filtramos por la ubicación de la tienda en Londres.)
+
+    $group: es un operador que agrupa los documentos de entrada por un campo específico, 
+    en nuestro caso, el método de compra. También calcula la edad promedio de los clientes
+
+    $project: es un operador que cambia la forma de los documentos de entrada.
+    En nuestro caso, cambiamos el nombre de los campos y redondeamos la edad promedio.
+
+    $sort: es un operador que ordena los documentos de entrada según el campo especificado.
+    En nuestro caso, ordenamos por edad promedio.
+*/
+
+use('sample_supplies')
+db.sales.aggregate([
+    {   $match: {"storeLocation": "London"}},
+
+    {
+        $group: {
+            _id: "$purchaseMethod", 
+            avgAge: {$avg: "$customer.age"}}
+    },
+
+    {
+        $project: {
+            _id: 0,
+            metodo: "$_id",
+            edadPromedio: {$round:["$avgAge"]}
+        }
+    },
+
+    {
+        $sort: {
+            "edadPromedio": 1
+        }
+    }
+
+])
+
+use('sample_restaurants')
+db.restaurants.aggregate([{    
+    $search: 
+    {   
+        "text": { "path": "name", "query": "cuban"}    
+    } 
+}])

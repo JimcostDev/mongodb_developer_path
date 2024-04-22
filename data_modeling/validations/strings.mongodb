@@ -1,0 +1,52 @@
+// buscar 
+use('test')
+db.users.find()
+
+// crear la estructura de la colección (schema)
+use('test')
+db.createCollection('users', {
+    validator: {
+        $jsonSchema: {
+            bsonType: 'object',
+            required: ['username', 'email'],
+            properties: {
+                username: {
+                    bsonType: 'string',
+                    description: 'debe ser un string y es requerido',
+                },
+                email: {
+                    bsonType: 'string',
+                    description: 'debe ser un string y es requerido',
+                },
+            },
+        },
+    },
+})
+
+
+// insertar usuario (error, email es tipo string)
+use('test')
+db.users.insertOne({
+    username: 'jimcostdev',
+    email: 12,
+})
+
+// insertar usuario (error, falta username)
+use('test')
+db.users.insertOne({
+    name: 'ronaldo jimenez acosta',
+    email: 'jim@test.com',
+})
+
+// insertar usuario (correcto)
+use('test')
+db.users.insertOne({
+    name: 'ronaldo jimenez acosta',
+    username: 'jimcostdev',
+    email: 'jim@test.com',
+    avatar: 'https://www.google.com',
+})
+
+
+// bson types
+// https://www.mongodb.com/docs/manual/reference/bson-types/
