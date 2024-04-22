@@ -1,0 +1,42 @@
+use('test')
+db.getCollectionInfos()
+
+use('test')
+db.runCommand({
+     collMod: 'users',
+     validator: {
+        $jsonSchema: {
+            bsonType: 'object',
+            required: ['name', 'price'],
+            additionalProperties: false,
+            properties: {
+                name: {
+                    bsonType: 'string'
+                },
+                price: {
+                    bsonType: 'number'
+                },
+                sizes: {
+                    bsonType: 'array',
+                    minItems: 1,
+                    uniqueItems: true,
+                    items: {
+                        bsonType: 'string'
+                    }
+                },
+                category: {
+                    bsonType: 'object',
+                    required: ['name'],
+                    properties: {
+                        name: {
+                            bsonType: 'string'
+                        },
+                        image: {
+                            bsonType: 'string'
+                        }
+                    }
+                }
+            },
+        },
+    },
+})
