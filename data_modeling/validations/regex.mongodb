@@ -1,0 +1,63 @@
+// buscar 
+use('test')
+db.users.find()
+
+// vaciar colección
+use('test')
+db.users.drop()
+
+// crear la estructura de la colección (schema)
+use('test')
+db.createCollection('users', {
+    validator: {
+        $jsonSchema: {
+            bsonType: 'object',
+            required: ['username', 'email', 'password'],
+            properties: {
+                username: {
+                    bsonType: 'string',
+                    description: 'debe ser un string y es requerido',
+                },
+                email: {
+                    bsonType: 'string',
+                    description: 'debe ser un string y es requerido',
+                },
+                password: {
+                    bsonType: 'string',
+                    pattern: '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})', // al menos una minúscula, una mayúscula, un número y 8 caracteres
+                },
+                age:{
+                    bsonType: 'int',
+                    minimum: 18,
+                    maximum: 100
+                },
+                isSingle: {
+                    bsonType: 'bool',
+                    description: 'debe ser un booleano',
+                },
+                role:{
+                    bsonType: 'string',
+                    enum: ['admin', 'user', 'guest'],
+                    description: 'debe ser un string y debe ser uno de los valores permitidos',
+                }
+            },
+        },
+    },
+})
+
+
+// insertar usuario ()
+use('test')
+db.users.insertOne({
+    username: 'xdev',
+    email: 'xdev@gmail.com',
+    password: 'Xdev1234',
+    age: 24,
+    isSingle: true,
+    role: 'admin'
+})  
+
+
+
+// bson types
+// https://www.mongodb.com/docs/manual/reference/bson-types/
