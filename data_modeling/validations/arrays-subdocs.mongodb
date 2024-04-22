@@ -1,0 +1,64 @@
+// buscar 
+use('test')
+db.products.find()
+
+// vaciar colección
+use('test')
+db.products.drop()
+
+// crear la estructura de la colección (schema)
+use('test')
+db.createCollection('products', {
+    validator: {
+        $jsonSchema: {
+            bsonType: 'object',
+            required: ['name', 'price'],
+            properties: {
+                name: {
+                    bsonType: 'string'
+                },
+                price: {
+                    bsonType: 'number'
+                },
+                sizes: {
+                    bsonType: 'array',
+                    minItems: 1,
+                    uniqueItems: true,
+                    items: {
+                        bsonType: 'string'
+                    }
+                },
+                category: {
+                    bsonType: 'object',
+                    required: ['name'],
+                    properties: {
+                        name: {
+                            bsonType: 'string'
+                        },
+                        image: {
+                            bsonType: 'string'
+                        }
+                    }
+                }
+            },
+        },
+    },
+})
+
+
+// insertar un documento
+use('test')
+db.products.insertOne({
+    name: 't-shirt coder',
+    price: 8.99,
+    sizes: ['S', 'M', 'L'],
+    category:{
+        name: 'clothes',
+        image: 'https://www.google.com/img.png'
+    }
+})  
+
+
+
+// bson types
+// https://www.mongodb.com/docs/manual/reference/bson-types/
