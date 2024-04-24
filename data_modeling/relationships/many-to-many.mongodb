@@ -1,0 +1,59 @@
+// actualizar el documento de la colección de productos
+use('test')
+db.products.updateOne(
+    { name: 'devs jacket' },
+    {
+        $set: {
+            stores_ids: [
+                ObjectId('662907d523b09a09a68893dc')
+            ]
+        }
+    }
+)
+
+// consultar store desde el producto
+use('test')
+db.products.aggregate([
+    {
+        $lookup: {
+            from: 'stores',
+            localField: 'stores_ids',
+            foreignField: '_id',
+            as: 'stores'
+        }
+    }
+])
+     
+
+// insertar  documentos en la colección de stores
+use('test')
+db.stores.insertMany([
+    {
+        name: 'Store Dev 1',
+        products: [
+            ObjectId('6629068db1dab5e0e9e9b058'),
+            ObjectId('6629068db1dab5e0e9e9b059'),
+            ObjectId('6629068db1dab5e0e9e9b05a')
+        ]
+    },
+    {
+        name: 'Store Dev 2',
+        products: [
+            ObjectId('6629068db1dab5e0e9e9b05a'),
+            ObjectId('6629068db1dab5e0e9e9b058')
+        ]
+    }
+])
+
+// consultar productos de la colección de stores
+use('test')
+db.stores.aggregate([
+    {
+        $lookup: {
+            from: 'products',
+            localField: 'products',
+            foreignField: '_id',
+            as: 'products'
+        }
+    }
+])
