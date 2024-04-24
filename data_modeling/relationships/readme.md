@@ -221,13 +221,13 @@ Para relaciones muchos a muchos, también puedes utilizar arrays de IDs o docume
 No existe una regla general estricta sobre cuándo embeber o referenciar en una base de datos. La decisión depende principalmente de la naturaleza de los datos y de los requisitos específicos de la aplicación.
 
 **Embeber:** 
-- Útil cuando los datos embebidos son naturalmente parte del documento principal y siempre se acceden juntos.
-- Adecuado para relaciones uno a uno o uno a pocos, donde los datos embebidos son relativamente pequeños y no cambian frecuentemente.
+- Útil cuando los datos embebidos **son naturalmente parte del documento principal y siempre se acceden juntos.**
+- Adecuado para **relaciones uno a uno o uno a pocos**, donde los datos embebidos son relativamente pequeños y no cambian frecuentemente.
 - Puede mejorar el rendimiento de consultas al reducir la necesidad de unir múltiples colecciones.
 
 **Referenciar:**
-- Adecuado cuando los datos relacionados pueden ser compartidos por múltiples documentos o pueden cambiar frecuentemente.
-- Útil para relaciones uno a muchos o muchos a muchos, donde los datos relacionados son grandes o pueden ser actualizados independientemente.
+- Adecuado cuando los datos relacionados **pueden ser compartidos por múltiples documentos o pueden cambiar frecuentemente.**
+- Útil para relaciones **uno a muchos o muchos a muchos**, donde los datos relacionados son grandes o pueden ser actualizados independientemente.
 - Permite una gestión más eficiente de los datos relacionados y puede mantener la consistencia en toda la base de datos.
 
 En general, es importante considerar la consistencia, la integridad y el rendimiento al tomar decisiones sobre cómo modelar las relaciones en la base de datos. A menudo, es una cuestión de equilibrar estos factores y adaptar el enfoque según las necesidades específicas del proyecto.
