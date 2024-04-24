@@ -146,7 +146,14 @@ Para una relación uno a muchos, puedes utilizar un array de documentos embebido
 > La elección entre **embeber documentos y utilizar referencias** depende de factores como la frecuencia y la forma en que accedes a los datos, el tamaño de los documentos y la necesidad de realizar consultas complejas.
 
 ### Relación muchos a muchos (N:N):
-Para relaciones muchos a muchos, también puedes utilizar arrays de IDs o documentos embebidos en ambas colecciones para representar la relación. Por ejemplo, si tienes una colección de "Estudiantes" y otra de "Clases", podrías almacenar los IDs de las clases en las que está inscrito un estudiante en un array dentro del documento del estudiante, y viceversa.
+La relación muchos a muchos es cuando un documento de una coleccion A puede estar relacionado con varios documentos de una coleccion B y viceversa. Esta relación **es siempre referencial**.
+
+Se pueden realizar de 2 formas:
+
+- Con una coleccion intermediaria, que hace de puente entre 1 o más colecciones.
+- Embeber dentro de cada documento un arreglo con los identificadores de sus relaciones.
+
+Por ejemplo, si tienes una colección de "Estudiantes" y otra de "Clases", podrías almacenar los IDs de las clases en las que está inscrito un estudiante en un array dentro del documento del estudiante, y viceversa.
 
 ##### Usando arrays de IDs:
 ```js
@@ -173,50 +180,32 @@ Para relaciones muchos a muchos, también puedes utilizar arrays de IDs o docume
   ]
 }
 ```
+##### Usando una colección intermedia que sirva como puente entre las colecciones :
 
-##### Usando documentos embebidos:
 ```js
-// Colección: Estudiantes
 {
-  "_id": ObjectId("6098b48e5baf7d001f2b71c5"),
-  "nombre": "Juan",
-  "apellido": "Pérez",
-  "clases_inscritas": [
-    {
-      "id_clase": ObjectId("6098b48e5baf7d001f2b71c6"),
-      "nombre": "Matemáticas",
-      "profesor": "Dr. López",
-      "horario": "L-M-W 9am"
-    },
-    {
-      "id_clase": ObjectId("6098b48e5baf7d001f2b71c7"),
-      "nombre": "Historia",
-      "profesor": "Dra. Gómez",
-      "horario": "M-J 1pm"
-    }
-  ]
+  "_id": ObjectId("6098b48e5baf7d001f2b71c8"),
+  "id_estudiante": ObjectId("6098b48e5baf7d001f2b71c5"),
+  "id_clase": ObjectId("6098b48e5baf7d001f2b71c6")
+},
+{
+  "_id": ObjectId("6098b48e5baf7d001f2b71c9"),
+  "id_estudiante": ObjectId("6098b48e5baf7d001f2b71c5"),
+  "id_clase": ObjectId("6098b48e5baf7d001f2b71c7")
+},
+{
+  "_id": ObjectId("6098b48e5baf7d001f2b71ca"),
+  "id_estudiante": ObjectId("6098b48e5baf7d001f2b71c8"),
+  "id_clase": ObjectId("6098b48e5baf7d001f2b71c6")
+},
+{
+  "_id": ObjectId("6098b48e5baf7d001f2b71cb"),
+  "id_estudiante": ObjectId("6098b48e5baf7d001f2b71c9"),
+  "id_clase": ObjectId("6098b48e5baf7d001f2b71c7")
 }
 
-// Colección: Clases
-{
-  "_id": ObjectId("6098b48e5baf7d001f2b71c6"),
-  "nombre": "Matemáticas",
-  "profesor": "Dr. López",
-  "horario": "L-M-W 9am",
-  "estudiantes_inscritos": [
-    {
-      "id_estudiante": ObjectId("6098b48e5baf7d001f2b71c5"),
-      "nombre": "Juan",
-      "apellido": "Pérez"
-    },
-    {
-      "id_estudiante": ObjectId("6098b48e5baf7d001f2b71c8"),
-      "nombre": "María",
-      "apellido": "García"
-    }
-  ]
-}
 ```
+
 ---
 No existe una regla general estricta sobre cuándo embeber o referenciar en una base de datos. La decisión depende principalmente de la naturaleza de los datos y de los requisitos específicos de la aplicación. 
 

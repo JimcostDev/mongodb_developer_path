@@ -1,0 +1,60 @@
+// se emebebe la informacíon de estadisticas en los equipos que jugo el jugador
+// se referencia el equipo actual al que pertenece el jugador
+use('football')
+db.players.insertOne({
+    team_id: ObjectId('65cb8d4b73c22307b9a89b20'),
+    name: 'Robert Lewandowski',
+    date: new Date('1988-08-21'),
+    country: 'Polonia',
+    stats_by_team: [
+        {
+            team: 'Bayern Munich',
+            goals: 344,
+            matches: 375,
+            date:{
+                start: new Date('2014-07-01'),
+                end: new Date('2022-07-01')
+            }
+        },
+        {
+            team: 'Barcelona',
+            goals: 53,
+            matches: 85,
+            date:{
+                start: new Date('2022-07-02'),
+                end: new Date() // fecha actual
+            }
+        }
+    ]
+})
+
+// consulta embebida
+use('football')
+db.players.find(
+    {
+        "stats_by_team.team": "Liverpool FC"
+    }, 
+    {
+        name: 1, "stats_by_team.$": 1
+    }
+)
+
+// consulta referenciada (lookup o enlace)
+use('football')
+db.players.aggregate([
+    {
+        $match: {
+          _id: ObjectId('6628faeab0b92d830b28c851')
+        }
+    },
+    {
+        $lookup: {
+            from: 'teams',
+            localField: 'team_id',
+            foreignField: '_id',
+            as: 'current_team'
+        }
+    }
+])
+
+

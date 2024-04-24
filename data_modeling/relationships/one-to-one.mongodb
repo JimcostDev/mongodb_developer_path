@@ -1,0 +1,25 @@
+// docuemnto embebido
+use('test')
+db.personas.insertOne({
+    nombre: "Pau",
+    edad: 26,
+    ciudad: "Ciudad A",
+    pasaporte: {
+      numero: "YS123456787",
+      fecha_expedicion: ISODate("2022-01-15")
+    }
+})
+
+// Consulta
+use('test')
+db.personas.find({
+    "pasaporte.fecha_expedicion": {$lt: ISODate("2023-12-31")} // pasaportes vencidos
+})
+
+// En el 90% de los casos, cuando hay una relacion 1:1, esta suele ser embebida.
+
+/* 
+    Relaciones 1 a 1 referenciadas
+    Peso maximo de 16MB: Esto podria pasar si se llena con muchas propiedades 
+    y/o muy pesadas, como pueden ser binarios, imagenes, videos, etc.
+*/
