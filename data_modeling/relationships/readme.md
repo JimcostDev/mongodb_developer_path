@@ -149,7 +149,7 @@ Para una relación uno a muchos, puedes utilizar un array de documentos embebido
 Para relaciones muchos a muchos, también puedes utilizar arrays de IDs o documentos embebidos en ambas colecciones para representar la relación. Por ejemplo, si tienes una colección de "Estudiantes" y otra de "Clases", podrías almacenar los IDs de las clases en las que está inscrito un estudiante en un array dentro del documento del estudiante, y viceversa.
 
 ##### Usando arrays de IDs:
-```json
+```js
 // Colección: Estudiantes
 {
   "_id": ObjectId("6098b48e5baf7d001f2b71c5"),
@@ -175,7 +175,7 @@ Para relaciones muchos a muchos, también puedes utilizar arrays de IDs o docume
 ```
 
 ##### Usando documentos embebidos:
-```json
+```js
 // Colección: Estudiantes
 {
   "_id": ObjectId("6098b48e5baf7d001f2b71c5"),
