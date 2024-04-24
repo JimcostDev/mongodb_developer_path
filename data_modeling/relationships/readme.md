@@ -218,7 +218,14 @@ Para relaciones muchos a muchos, también puedes utilizar arrays de IDs o docume
 }
 ```
 ---
-No existe una regla general estricta sobre cuándo embeber o referenciar en una base de datos. La decisión depende principalmente de la naturaleza de los datos y de los requisitos específicos de la aplicación.
+No existe una regla general estricta sobre cuándo embeber o referenciar en una base de datos. La decisión depende principalmente de la naturaleza de los datos y de los requisitos específicos de la aplicación. 
+
+Nos podemos guiar con las siguientes preguntas:
+
+1. ¿Qué tan frecuente es consultada la información?
+2. ¿Qué tan frecuente se actualiza la información?
+3. ¿La información se consulta en conjunto en partes?
+
 
 **Embeber:** 
 - Útil cuando los datos embebidos **son naturalmente parte del documento principal y siempre se acceden juntos.**
