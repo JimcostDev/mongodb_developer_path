@@ -8,7 +8,8 @@ En pocas palabras, son como **vínculos entre diferentes entidades** que contien
 ### Bases de datos relacionales o sql
 --- 
 ### Relación uno a uno (1:1):
-En una relación uno a uno (1:1), generalmente se establece la clave primaria de una tabla como clave foránea en la otra tabla. Por ejemplo, si tienes una tabla de "Persona" con una clave primaria llamada "ID_Persona", y otra tabla de "Pasaporte" con una clave primaria "ID_Pasaporte", podrías poner "ID_Persona" como clave foránea en la tabla de "Pasaporte", indicando que cada pasaporte está vinculado a una única persona. Puede ir en cualquiera de las dos tablas.
+En una relación uno a uno (1:1), generalmente se establece la clave primaria de una tabla como clave foránea en la otra tabla. Por ejemplo, si tienes una tabla de "Persona" con una clave primaria llamada "ID_Persona", y otra tabla de "Pasaporte" con una clave primaria "ID_Pasaporte", podrías poner "ID_Persona" como clave foránea en la tabla de "Pasaporte", indicando que cada pasaporte está vinculado a una única persona. 
+La clave foránea puede ir en cualquiera de las dos tablas, en este caso no hay restricción específica. Sin embargo, es común colocar la clave foránea en la tabla que representa la entidad secundaria de la relación, es decir, la tabla que tiene una sola ocurrencia en comparación con la otra. En el ejemplo dado, como cada pasaporte está vinculado a una única persona, colocaríamos la clave foránea "ID_Persona" en la tabla de "Pasaporte". Esto permite una navegación más intuitiva y eficiente de la relación.
 
 #### Tabla: Persona
 
