@@ -1,9 +1,10 @@
 use("jimcostdev_api")
 db.projects.insertOne({
-    _id: 1,
-    image: "https://avatars.githubusercontent.com/u/53100460?v=4",
-    title: "API de Estandarización de Menús para Restaurantes",
-    description: "Este proyecto se centra en proporcionar una API robusta que facilite la estandarización de menús para restaurantes. Ofrece un conjunto completo de operaciones CRUD (Crear, Leer, Actualizar y Eliminar) diseñadas para la gestión ágil de categorías y productos, así como funcionalidades completas para la administración de usuarios.",
-    stack: ['python', 'fastapi', 'mongodb'],
-    link: "https://github.com/JimcostDev/menu-standardization-api"
+    _id: 6,
+    image: "https://firebasestorage.googleapis.com/v0/b/jimcostdev-firebase.appspot.com/o/financy-app.webp?alt=media&token=59434308-4d8f-4167-b4d9-b42e570fd37b",
+    title: "Financy APP - Simulador de Finanzas Personales",
+    description: "Financy APP es una aplicación web diseñada para simular y gestionar las finanzas personales de manera sencilla y eficaz. Permite al usuario registrar ingresos y gastos, proporcionando un resumen claro y conciso de su situación financiera.",
+    stack: ['astro', 'vue', 'tailwind'],
+    link: "https://financy-app-two.vercel.app/",
+    username: "jimcostdev"
   })
