@@ -1,0 +1,6 @@
+use("football");
+db.teams.insertOne({
+    "name": "Rayo Vallecano",
+    "league": "La Liga",
+    "country": "Spain",
+  });
