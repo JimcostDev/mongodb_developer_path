@@ -1,0 +1,14 @@
+// actualizar team
+use("football");
+db.teams.updateOne(
+  {
+    _id: ObjectId("5f8b8f3b9b3e6b3b3f3b3b3b"),
+  },
+  {
+    $set: {
+      "name": "Rayo Vallecano",
+      "country": "Spain",
+      "league": "La Liga",
+    },
+  }
+);
