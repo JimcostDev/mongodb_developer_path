@@ -1,2 +1,2 @@
 use('football')
-db.the_best_scorers.findOneAndDelete({_id: 'MLS'})
+db.teams.findOneAndDelete({_id: ObjectId("66e8285bb5d77e9c0be6a56f")})

@@ -12,5 +12,13 @@
         career: "Tecnólogo en Desarrollo de sistemas informáticos - 2021"
     }
   ])
-      
+
+  use("jimcostdev_api")
+  db.education.insertOne({
+    _id: 3,
+    company: "Instituto Centro de Sistemas del Valle - System Center",
+    career: "Técnico en ensamble y mantenimiento de computadores",
+    username: "jimcostdev",
+    year: 2018
+  })
   

@@ -31,3 +31,16 @@ db.work_experience.insertMany([
         username: "jimcostdev"
     }
 ])
+
+use("jimcostdev_api")
+db.work_experience.insertOne(
+    {
+        _id: 4,
+        rol: "Auxiliar de soporte de TI",
+        company: "Instituto Centro de Sistemas del Valle",
+        location: "Cali, Colombia",
+        activities: "Auxiliar de Soporte de TI, encargado del ensamble y mantenimiento de equipos de cómputo para asegurar su correcto funcionamiento y rendimiento, brindando además acompañamiento a estudiantes mediante soporte técnico y orientación en el uso de tecnologías informáticas. Responsable de la instalación de redes y configuración de servidores, optimizando la infraestructura tecnológica y garantizando una conectividad estable y segura.",
+        initial_date: "2017-10-01T00:00:00",
+        end_date: "2018-08-28T00:00:00",
+        username: "jimcostdev"
+    })
