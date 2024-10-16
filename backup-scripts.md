@@ -14,3 +14,13 @@ mongodump --uri <URI_DE_CONEXION> -d <nombre_de_la_base_de_datos> -o ./backup
 
 mongorestore --uri <URI_DE_CONEXION> ./backup --db <nombre_de_la_base_datos>
 ```
+
+## Exportar datos
+```sh
+mongoexport --uri <URI_DE_CONEXION> \
+           -d football -c scorers \
+           --query '{}' \
+           --limit 5 \
+           --out resultados.json
+           --jsonFormat=canonical
+```
