@@ -22,5 +22,5 @@ mongoexport --uri <URI_DE_CONEXION> \
            --query '{}' \
            --limit 5 \
            --out resultados.json
-           --jsonFormat=canonical
+           --jsonFormat canonical
 ```
