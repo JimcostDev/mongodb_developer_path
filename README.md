@@ -1,6 +1,6 @@
 # Guía de Aprendizaje de MongoDB
 
-![background](./imgs/mongodb.jpg)
+![background](./imgs/mongodb.webp)
 
 > !Si te resulta útil este proyecto, apóyalo con una ⭐! Tu apoyo nos motiva a crear más contenido y mejorar los recursos disponibles. ¡Gracias! :octocat:
 
