@@ -12,7 +12,7 @@ mongorestore --uri <URI_DE_CONEXION> ./backup
 ```sh
 mongodump --uri <URI_DE_CONEXION> -d <nombre_de_la_base_de_datos> -o ./backup
 
-mongorestore --uri <URI_DE_CONEXION> ./backup --db <nombre_de_la_base_datos>
+mongorestore --uri <URI_DE_CONEXION> ./backup --nsInclude='bd.*' 
 ```
 
 ## Exportar datos
