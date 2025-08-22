@@ -6,3 +6,4 @@ db.teams.find({league: {$nin:['Premier League', 'La Liga']}})
 // $in se usa para seleccionar documentos donde el valor de un campo está en un conjunto de valores especificado.
 use('football')
 db.teams.find({league: {$in:['Bundesliga', 'Serie A']}})
+
